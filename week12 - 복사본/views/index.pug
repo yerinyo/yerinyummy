@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  
+  form(action='register' , method='post' class="form-signin")
+    h1(class="form-signin-heading") Please sign in
+    br
+    p
+    input(type='text' name='email' class="form-control" placeholder="Email address" required autofocus)
+    p
+    input(type='password' class="form-control" name="password" placeholder="password" required autofocus)
+    p
+    br
+    button(class="btn btn-large btn-primary") sign in
+  
