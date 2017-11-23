@@ -1,0 +1,23 @@
+
+
+
+
+
+
+<html>
+<head>
+ <title>GenieGo in HelloAnt$</title>
+</head>
+<body>
+ <h1>이미지 업로드</h1>
+ <form  action='/upload' method="post" enctype="multipart/form-data" > 
+  <font size="5">이름 :</font>&nbsp;&nbsp;<input type="text" name="name" />
+        <br>
+        <br>
+        <input type='file' name='upload' /><br>
+        <br>
+        <input type='submit' />
+ </form>
+</body>
+</html>
+[출처] ExpressJS + NodeJS를 이용한 이미지 업로드(1)|작성자 지니고
