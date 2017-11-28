@@ -1,0 +1,69 @@
+var express = require('express');
+var router = express.Router();
+var Book = require('../models/book');
+var app = express();
+
+
+/* GET home page. */
+router.get('/', function(req, res) {
+res.render('registration', {items:[]});
+});
+
+
+
+
+// GET ALL BOOKS
+router.get('/get', function(req,res,next){
+Book.find(function(err, books){
+if(err) return res.status(500).send({error: 'database failure'});
+res.render('get', {items:books});
+})
+});
+
+
+
+// CREATE BOOK
+router.post('/registration', function(req, res,next){
+var newBook = new Book();
+newBook.photo= req.body.photo;
+newBook.name = req.body.name;
+newBook.address= req.body.address;
+newBook.phone = req.body.phone;
+newBook.comments = req.body.comments;
+newBook.score = req.body.score;
+
+newBook.save(function(err){
+if(err){
+console.error(err);
+res.redirect('/');
+}
+res.redirect('/');
+});
+});
+
+
+// UPDATE THE BOOK
+
+//router.post('/update', function(req, res, next){
+//Book.update({ _id: req.body.id }, { $set: req.body }, function(err, output){
+//if(err) res.status(500).json({ error: "database failure" });
+//console.log(output);
+//if(!output.n) return res.status(404).json({ error: 'book not found' });
+////res.json( { message: 'book updated' } );
+//res.redirect('/');
+//})
+//});
+
+// DELETE BOOK
+
+//router.post('/delete', function(req, res, next){
+//Book.remove({ _id: req.body.id }, function(err, output){
+//if(err) return res.status(500).json({ error: "database failure" });
+////res.status(204).end();
+////res.json({ message: "book deleted" });
+//res.redirect('/');
+//})
+//});
+
+module.exports = router;
+
