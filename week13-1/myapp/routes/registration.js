@@ -37,7 +37,7 @@ if(err){
 console.error(err);
 res.redirect('/');
 }
-res.redirect('/');
+res.redirect('/get');
 });
 });
 
@@ -56,17 +56,13 @@ router.get('/get/:_id', function(req, res){
 
  //UPDATE THE BOOK
 router.post('/get/:_id', function(req, res){
-      var _id = req.params._id;
-	var reply = req.params.reply;
-       Book.findOne({"_id" : _id}, function(err, books){
-        if(err) throw err;
-        Book.update({ "_id": _id}, { "reply": req.body.reply }, function(err, output){
-            console.log(output);
-            //res.json( { message: 'book updated' } );
-	})
-           res.redirect('/get/:_id');
-})
+      	var _id = req.body._id;
+	var person = req.body.person;
+	var memo = req.body.memo;
+      addComment(_id, person, memo);
+    res.redirect('/get');
 });
+
 
 
 // DELETE BOOK
@@ -81,3 +77,15 @@ router.post('/get/:_id', function(req, res){
 //});
 
 module.exports = router;
+
+
+
+function addComment(_id, writer , comment) {
+    Book.findOne({"_id": _id}, function(err, books){
+        if(err) throw err;
+        books.reply.unshift({person:writer, memo: comment});
+        books.save(function(err){
+            if(err) throw err;
+        });
+    });
+}

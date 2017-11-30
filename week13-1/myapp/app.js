@@ -138,4 +138,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+mongoose.Promise = global.Promise;
 module.exports = app;

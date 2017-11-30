@@ -202,9 +202,10 @@
 				<div> <p> Description : <%= items.comments %> </p> </div>
 				<div> <p> Score : <%= items.score %> </p> </div>
 				<div> <p> Reply : <%= items.reply %> </p> </div>
-				<div>	<input class="form-control" id="reply" name="reply" placeholder="Reply" type="textarea" required> </div>	
-				<br>
-				<button class="btn pull-right" type="submit">Send</button>
+				<div>	<input id="person" name="person" placeholder="Write your Nickname" type="text" required> </div>	
+				<div>	<textarea id="memo" name="memo" rows="3" cols="30"></textarea></div>	
+					<input type="hidden" name="_id" id="_id" value="<%=items._id%>">
+				<button class="btn pull-right" type="submit">Done</button>
     	    </div>
 	      </form>
          </div>
