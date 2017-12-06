@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
+
   <title>YummyYummy</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,15 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script>
-    function share() {
-      var url = encodeURI(encodeURIComponent(myform.url.value));
-      var title = encodeURI(myform.title.value);
-      var shareURL = "http://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
-      document.location = shareURL;
-    }
-  </script>  
-<style>
+  <style>
   body {
       font: 400 15px/1.8 Lato, sans-serif;
       color: #777;
@@ -29,8 +22,8 @@
       font-size: 20px;
       color: #111;
   }
-  .container {
-      padding: 80px 120px;
+  .insert {
+      padding: 80px 120px;	  
   }
   .person {
       border: 10px solid transparent;
@@ -39,10 +32,6 @@
       height: 80%;
       opacity: 0.7;
   }
-
- .reply_list {
- border-color: #111111;
-}
   .person:hover {
       border-color: #f1f1f1;
   }
@@ -61,7 +50,7 @@
     }
   }
   .bg-1 {
-      background: #FFFFFF;
+      background: #2d2d30;
       color: #bdbdbd;
   }
   .bg-1 h3 {color: #fff;}
@@ -101,18 +90,12 @@
       text-align: center;
       font-size: 30px;
   }
-  .modal-header {
-      padding: 10px 50px;
+  .modal-header, .modal-body {
+      padding: 40px 50px;
   }
   .nav-tabs li a {
       color: #777;
   }
-  #googleMap {
-      width: 100%;
-      height: 400px;
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-  }  
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
@@ -159,10 +142,9 @@
   }  
   .form-control {
       border-radius: 0;
-	
   }
   textarea {
-     resize: none;
+      resize: none;
   }
   </style>
 </head>
@@ -181,8 +163,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/home">HOME</a></li>
-        <li><a href="/get">STORE</a></li>
-        <li><a href="/up">REGISTRATION</a></li>
+        <li><a href="/get">STORES</a></li>
+        <li><a href="/registration">REGISTRATION</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
@@ -199,61 +181,58 @@
 </nav>
 
 
-<!-- Container (TOUR Section) -->
-<div id="store" class="bg-1">
-  <div class="container">
-    <div class="row text-center">
-		<div class="col-sm-2">
-		</div>
-		<div class="col-sm-2">
-<form id="myform">
-    <input type="hidden" id="url" value="http://54.250.245.186:3000/get/<%=items._id%>"><br/>
-    <input type="hidden" id="title" value="title" placeholder="Title"><br/>
-  </form>
-  <input type="image" src="https://camo.githubusercontent.com/4dcd4ec3c86a1f504354682bb6de7005edb493ec/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f353631373532392f313237343635372f36373263633632342d326462662d313165332d383763652d3236343539373161353931362e6a7067" value="button" onclick="share()" width="40" height="40"/>
-    
-		</div>
-		<div class="col-sm-4">
-			<div class="thumbnail">
-			<img src="<%= items.photo%>" alt="Store" width="340" height="400">   
-				<div> <p> Name : <%= items.name %>  </p> </div>
-				<div> <p> Location : <%= items.address %> </p> </div>
-				<div> <p> Phone : <%= items.phone %> </p> </div>
-				<div> <p> Description : <%= items.comments %> </p> </div>
-				<div> <p> Score : <%= items.score %> </p> </div>
-				<br>
-			     </div>
+
+
+
+
+
+
+
+
+
+
+<section id="registration" class="insert">
+  <h3 class="text-center">REGISTRATION</h3>
+	<div class="row">
+    <div class="col-md-4">
+	</div>
+    <div class="col-md-7">
+		<form acton="/upload" method="post">
+        <div>
+			<div class="row">
+				<div class="col-md-7 form-group">
+					<img src="http://54.250.245.186:3000/resources/images/name/fan.jpg" alt="Store" width="340" height="400">   
+				</div>
+				<div class="col-md-7 form-group">
+					<input class="form-control" id="na" name="na" placeholder="Name" type="text" required>
+				</div>
+				<div class="col-md-7 form-group">
+					<input class="form-control" id="address" name="address" placeholder="Address" type="text" required>
+				</div>
+				<div class="col-md-7 form-group">
+					<input class="form-control" id="phone" name="phone" placeholder="phone" type="text" required>
+				</div>
+				<div class="col-md-7 form-group">
+					<input class="form-control" id="comments" name="comments" placeholder="comments" type="text" required>
+				</div>
+				<div class="col-md-7 form-group">
+					<input class="form-control" id="score" name="score" placeholder="Score" type="number" required>
+				</div>
+			</div>
+      <br>
+		<div class="row">
+        <div class="col-md-7 form-group">
+			<button class="btn pull-right" type="submit">Send</button>
+        </div>
       </div>
-		<div class="col-sm-4">
-	  <div class="reply">
-	   <form acton="/get/:_id/reply" method="post"
-            <div class="reply_list">
-                <%if(items.reply.length>0){%>
-                <%var commentsList = items.reply;%>
-                <%for(var i=0; i<commentsList.length; i++){%>
-                <%if(i<5){%>
-                <div class>
-                    <div><p style="color:black"><%=commentsList[i].person%>:<%=commentsList[i].memo%></p></div>
-                </div>
-                <%}%>
-                <%}%>
-                <%} else {%>
-                <div class="reply_content">
-                    <div class="reply_info">Nothing</div>
-                </div>
-                <%}%>
-           </div>
-				<div>	<input class="form-control11" id="person" name="person" placeholder="Nickname" type="text" required>
-				 <textarea class="form-control11"  id="memo" name="memo" rows="2"  cols="19"></textarea></div>	
-					<input type="hidden" name="_id" id="_id" value="<%=items._id%>"> <br>
-				<button class="btn pull-center" type="submit">Done</button>
-    	    </div>
-	  </div>
-	  	      </form>
     </div>
-</div>
+</form>
+    </div>
+  </div>
+  <br>
 
-
+ 
+</section>
 
 
 
@@ -264,16 +243,12 @@ $(document).ready(function(){
   
   // Add smooth scrolling to all links in navbar + footer link
   $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-
     // Make sure this.hash has a value before overriding default behavior
     if (this.hash !== "") {
-
       // Prevent default anchor click behavior
       event.preventDefault();
-
       // Store hash
       var hash = this.hash;
-
       // Using jQuery's animate() method to add smooth page scroll
       // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
       $('html, body').animate({
@@ -290,3 +265,4 @@ $(document).ready(function(){
 
 </body>
 </html>
+

@@ -8,7 +8,7 @@ var methodOverride = require('method-override');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 
-var token = "AAAAN/BithUCnhi8YJUiCDLqs5W1SH6pkENZq2qT9nTDRUAL5TxzQUvYQJceBAUBXQjz6awrqqrYQGoU8uFx/gs8ROo=";
+var token = "AAAANxMzrFlLrOlvym6zSPrEu1yZCSTacqW60A+j44qyW7v051KVu1MBO2nXs89dftL8EVd2Et/jJqK3kvMDReFLZ9Y=";
 var header = "Bearer " + token; // Bearer 다음에 공백 추가
 var state = '41517383'
 

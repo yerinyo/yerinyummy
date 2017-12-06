@@ -64,7 +64,8 @@
   }
   .thumbnail {
       padding: 0 0 15px 0;
-      border: none;
+      border: 1px;
+	  border-color:#FA6B50;
       border-radius: 0;
   }
   .thumbnail p {
@@ -199,9 +200,9 @@
          <div> <p> <%= items[i].name %>  </p> </div>
           <div> <p> <%= items[i].address %> </p> </div>
           <div> <p> <%= items[i].phone %> </p> </div>
-          <a href="/get/<%=items[i]._id%>"> Details </a>
-		</div>
-      </div>
+       <button class="btn pull-center" onclick="location.href='get/<%=items[i]._id%>'">DETAILS</button>
+		</div>     
+</div>
        <% } %>
       </div>
   </div>
