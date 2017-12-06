@@ -1,0 +1,31 @@
+<html ng-app="Genie">
+<head>
+ <title>Yummy Yummy</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="controller/controller.js"></script>
+</head>
+<body ng-controller="helloants">
+ <h1>이미지 업로드</h1>
+ <form  action='/upload' method="post" enctype="multipart/form-data" > 
+  <font size="5">이름 :</font>&nbsp;&nbsp;<input type="text" name="name" value="name"/>
+        <br>
+        <br>
+        <input type='file' name='upload' /><br>
+        <br>
+        <input type='submit' >
+ </form>
+    
+
+
+         
+
+<div ng-repeat="image in imageList | filter:{ image.name:dd}">
+        <img ng-src="{{image.filePath}}" width="50" height="50" />
+        <h2>{{image.name}}</h2>
+    </div>
+
+	
+</body>
+</html>
+
+
