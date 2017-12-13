@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include ../partials/header %>
+    </header>
+    <div class="posts">
+    <% include partials/top %>
+<!-- main start-->
+
+<!-- views/posts/show.ejs -->
+<div class="show">
+  <div class="buttons floats">
+    <% if(user && user.equals(post.author._id)) { %>
+      <form class="float_right" action="/posts/<%=post._id%>?_method=delete" method="post">
+        <button type="button" onclick="confirm('Your post will be deleted')?this.parentElement.submit():null;">Delete</button>
+      </form>
+      <button class="float_right" onclick="location.href='/posts/<%=post._id%>/edit'">Edit</button>
+    <% } %>
+    <button class="float_left" onclick="location.href='/posts?<%= urlQuery %>'">Back</button>
+  </div>
+  <h3>
+    <%= post.numId %>.
+    <span class="highlight" data-highlight="<%= search.highlight.title %>">
+      <%= post.title %>
+    </span>
+  </h3>
+  <div class="content floats">
+    <div class="info float_right">
+      <div class="highlight" data-highlight="<%= search.highlight.author %>">
+        Author: <%= post.author.nickname %>
+      </div>
+      <div>
+        <%= post.views %> views
+      </div>
+      <div class="timestamp"><span>Created:</span>
+        <%= post.getFormattedTime(post.createdAt) %>, <%= post.getFormattedDate(post.createdAt) %>
+      </div>
+      <% if(post.updatedAt) { %>
+        <div class="timestamp"><span>Updated:</span>
+          <%= post.getFormattedTime(post.updatedAt) %>, <%= post.getFormattedDate(post.updatedAt) %>
+        </div>
+      <% } %>
+    </div>
+    <div class="body highlight" data-highlight="<%= search.highlight.body %>"><%= post.body %></div>
+    <div class="comments">
+      <h4>Comments (<%= post.comments?post.comments.length:"0" %>)</h4>
+      <% if(post.comments) { %>
+        <% post.comments.forEach(function(comment){ %>
+          <div class="comment">
+            <div class="top">
+              <b><%= comment.author.nickname %></b>
+              (<%= post.getFormattedTime(comment.createdAt) %>,
+              <%= post.getFormattedDate(comment.createdAt) %>)
+              <% if(user && user.equals(comment.author._id)) { %>
+                <form class="delete"  method="post"
+                  action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=delete&<%= urlQuery %>">
+                  <button type="button"
+                    onclick="confirm('Your comment will be deleted')?this.parentElement.submit():null;">
+                    x
+                  </button>
+                </form>
+              <% } %>
+            </div>
+            <div class="body"><%= comment.body %></div>
+          </div>
+        <% }) %>
+      <% } %>
+      <form class="addComment checkValidation"
+        action="/posts/<%=post._id%>/comments?<%= urlQuery %>" method="post">
+        <textarea class="cvRequired" type="text" name="comment[body]"
+          cvRqErrMsg="comments is empty." cvRqErrTo="#cvErrTitle" <%= user?"":"disabled" %>
+          placeholder="<%= user?"Add comment here":"Please login to make a comment" %>"></textarea>
+        <button type="submit" <%= user?"":"disabled" %>>Comment</button>
+        <div id="cvErrTitle" class="message"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- main end -->
+    </div><!--posts end -->
+  </body>
+</html>
